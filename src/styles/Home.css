@@ -1,0 +1,442 @@
+.body {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background-color: darkseagreen;
+}
+
+.pause-anim {
+  animation-play-state: paused;
+}
+
+.resume-anim {
+  animation-play-state: running;
+}
+
+.body-wrapper-bg {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  align-items: center;
+  background-image: url("../assets/sky_mount_v2.png");
+  background-repeat: round;
+  background-blend-mode: color-burn;
+  background-color: transparent;
+  z-index: -100;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+}
+
+.body-wrapper-bg-dark-start {
+  animation: bgDarkAnim 5s linear 0s forwards normal;
+}
+
+@keyframes bgDarkAnim {
+  from {
+    background-color: transparent;
+  }
+  to {
+    background-color: darkgray;
+  }
+}
+
+.body-wrapper-bg-dark-end {
+  animation: bgDarkAnimRev 1s linear 0s forwards normal;
+}
+
+@keyframes bgDarkAnimRev {
+  from {
+    background-color: darkgray;
+  }
+  to {
+    background-color: transparent;
+  }
+}
+
+.partilce-layer {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 300px;
+  z-index: -50;
+  overflow-y: hidden;
+}
+
+.particle {
+  position: relative;
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+  background-color: white;
+  opacity: 0.75;
+  top: -50px;
+  animation: particleAnim 25s linear infinite;
+}
+
+.particle:nth-child(1) {
+  left: 35%;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border-radius: 5px;
+  background-color: white;
+  opacity: 0.75;
+  animation-delay: 0.5s;
+  animation-duration: 15s;
+}
+
+.particle:nth-child(2) {
+  left: 40%;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  background-color: white;
+  opacity: 0.75;
+  animation-delay: 0s;
+  animation-duration: 5s;
+}
+
+.particle:nth-child(3) {
+  left: 45%;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: white;
+  opacity: 0.75;
+  animation-delay: 1s;
+  animation-duration: 10s;
+}
+
+.particle:nth-child(4) {
+  left: 50%;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border-radius: 5px;
+  background-color: white;
+  opacity: 0.75;
+  animation-delay: 0.5s;
+  animation-duration: 15s;
+}
+
+.particle:nth-child(5) {
+  left: 55%;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+  background-color: white;
+  opacity: 0.75;
+  animation-delay: 1.5s;
+  animation-duration: 20s;
+}
+
+.particle:nth-child(6) {
+  left: 60%;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  background-color: white;
+  opacity: 0.75;
+  animation-delay: 0s;
+  animation-duration: 15s;
+}
+
+.particle:nth-child(7) {
+  left: 65%;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: white;
+  opacity: 0.75;
+  animation-delay: 2s;
+  animation-duration: 5s;
+}
+
+@keyframes particleAnim {
+  0% {
+    transform: translateY(0px) rotateZ(45deg);
+    opacity: 0.75;
+  }
+
+  50% {
+    opacity: 0.1;
+  }
+
+  100% {
+    transform: translateY(500px) rotateZ(180deg);
+    opacity: 0;
+  }
+}
+
+.body-wrapper-progress-start {
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 0%;
+  animation: slideUpBg 5s linear 0s forwards normal;
+}
+
+@keyframes slideUpBg {
+  from {
+    background-color: #00545e;
+    height: 0%;
+    box-shadow: 0px 0px 30px rgb(0, 0, 0, 0.4);
+    bottom: 0;
+    opacity: 0.1;
+  }
+  to {
+    background-color: #00545e;
+    height: 100%;
+    box-shadow: 0px 0px 30px rgb(0, 0, 0, 0.4);
+    bottom: 0;
+    opacity: 1;
+  }
+}
+
+.body-wrapper-progress-end {
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 0%;
+  animation: slideDownBg 1s linear 0s forwards normal;
+}
+
+@keyframes slideDownBg {
+  from {
+    background-color: #00545e;
+    height: 100%;
+    box-shadow: 0px 0px 30px rgb(0, 0, 0, 0.4);
+    bottom: 0;
+  }
+  to {
+    background-color: #00545e;
+    height: 0%;
+    box-shadow: 0px 0px 100px #00545e;
+    bottom: 0;
+  }
+}
+.body-wrapper-fg {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.timer-text {
+  color: #1f2728;
+  background-color: #daebed;
+  border-radius: 50px;
+  width: 80%;
+  font-size: 50px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.shadow {
+  box-shadow: 0px 0px 30px #65cad6;
+  animation: shadowAnim 4s linear 0s infinite;
+}
+
+@keyframes shadowAnim {
+  0% {
+    box-shadow: 0px 0px 10px #65cad6;
+  }
+  50% {
+    box-shadow: 0px 0px 30px #65cad6;
+  }
+  100% {
+    box-shadow: 0px 0px 10px #65cad6;
+  }
+}
+
+.progress-bar {
+  height: 20px;
+  width: 250px;
+  background-color: transparent;
+  border-style: solid;
+  border-width: 4px;
+  border-radius: 10px;
+  border-color: aliceblue;
+  margin-bottom: 20px;
+}
+
+.progress-start {
+  height: 100%;
+  border-radius: 5px;
+  background-color: #65cad6;
+  animation: slideRight 5s linear 0s forwards normal;
+}
+
+@keyframes slideRight {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.spinner-bar {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 250px;
+  height: 250px;
+  border-style: solid;
+  border-width: 15px;
+  border-radius: 50%;
+  box-shadow: 0px 0px 30px #65cad6;
+  border-color: white;
+  z-index: -70;
+}
+
+.start-spin-anim {
+  animation: spin 5s linear 0s forwards normal;
+}
+
+@keyframes spin {
+  0% {
+    border-top-color: aliceblue;
+  }
+  25% {
+    border-top-color: #65cad6;
+  }
+  50% {
+    border-top-color: #65cad6;
+    border-right-color: #65cad6;
+  }
+  75% {
+    border-top-color: #65cad6;
+    border-right-color: #65cad6;
+    border-bottom-color: #65cad6;
+  }
+  100% {
+    border-top-color: #65cad6;
+    border-right-color: #65cad6;
+    border-bottom-color: #65cad6;
+    border-left-color: #65cad6;
+  }
+}
+
+.progress-30m {
+  animation-duration: 5s;
+}
+.progress-1h {
+  animation-duration: 3600s;
+}
+.progress-15h {
+  animation-duration: 5400s;
+}
+.progress-2h {
+  animation-duration: 7200s;
+}
+
+.primary-btn {
+  position: absolute;
+  height: 250px;
+  width: 250px;
+  z-index: 50;
+  border: 0;
+  border-radius: 50%;
+  background-color: #daebed;
+  transition: background-color 0.3s, transform 0.3s ease 0s;
+}
+
+.primary-btn:hover {
+  border: 0;
+  border-radius: 50%;
+  background-color: #a6d5db;
+  transform: scale(1.15, 1.15) rotate(360deg);
+}
+
+.primary-btn:active {
+  color: black;
+  background-color: #a6d5db;
+  transform: translateY(0px);
+}
+
+.primary-btn:disabled {
+  animation: rotate-start 5s linear 0s infinite;
+  background-color: #a6d5db;
+}
+
+@keyframes rotate-start {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.secondery-btn-grid {
+  margin-top: 10px;
+  display: grid;
+
+  column-gap: 5px;
+  grid-template-columns: auto auto auto auto;
+}
+
+.secondery-btn-circle {
+  height: 80px;
+  width: 80px;
+  border: 0;
+  border-radius: 50%;
+  background-color: #e6f0f2;
+  transition: background-color 0.3s ease 0s;
+  transition: transform 0.3s ease 0s;
+}
+
+.secondery-btn-circle:hover {
+  background-color: #a6d5db;
+  transform: translateY(-5px) rotate(-360deg);
+}
+
+.secondery-btn-circle:active {
+  background-color: #a6d5db;
+  transform: translateY(5px);
+}
+
+.time-btn-grid {
+  margin-top: 10px;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  gap: 10px;
+  grid-template-columns: auto auto auto auto;
+}
+
+.time-btn-circle {
+  height: 50px;
+  width: 50px;
+  font-size: large;
+  border: 0;
+  border-radius: 50%;
+  background-color: #e6f0f2;
+  transition: background-color 0.3s ease 0s;
+  transition: transform 0.3s ease 0s;
+}
+
+.time-btn-circle:hover {
+  background-color: #a6d5db;
+  transform: translateY(-5px);
+}
+
+.time-btn-circle:active {
+  background-color: #a6d5db;
+  transform: translateY(5px);
+}
+
+.time-btn-circle:focus {
+  height: 60px;
+  width: 60px;
+  background-color: #a6d5db;
+}

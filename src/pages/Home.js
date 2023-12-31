@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "../styles/Home.css";
 import { MdPlayArrow, MdStop, MdReplay } from "react-icons/md";
-
-const preDefTimes = [5, 3600, 5400, 7200];
+import { preDefTimes as timeButtonList } from "../helper/ButonList";
+import Button from "../components/Button";
+import Footer from "../components/Footer";
 
 function Home() {
   var [curSec, setCurSec] = useState(0);
@@ -16,6 +17,7 @@ function Home() {
   const [minute, setMinute] = useState("0" + 0);
   var [second, setSecond] = useState("0" + 0);
 
+  //method to start countdown
   const startTimer = () => {
     setCurSec(targetSec);
     if (targetSec > 0) {
@@ -33,6 +35,7 @@ function Home() {
     }
   };
 
+  //method to convert second to h:m:s
   const calculateTime = (sec) => {
     const h = Math.floor(sec / 3600);
     const min = Math.floor((sec % 3600) / 60);
@@ -52,6 +55,7 @@ function Home() {
     }
   };
 
+  //method to update time; used in useEffect hooked -> every second interval
   const updateTimer = () => {
     if (startFlag) {
       curSec -= 1;
@@ -61,6 +65,7 @@ function Home() {
     }
   };
 
+  //method to set Target time
   const handleSetTargetSec = (targetTime) => {
     calculateTime(targetTime);
     setTragetSec(targetTime);
@@ -81,18 +86,25 @@ function Home() {
     setStartFlag(false);
   };
 
+  //handle progress ui (classNames)
   const handleProgress = (classNameStart, classNameGeneral) => {
     if (startFlag) {
       //need to implement time based class
-      if (targetSec === preDefTimes[0]) {
-        return classNameStart + " progress-30m";
-      } else if (targetSec === preDefTimes[1]) {
-        return classNameStart + " progress-1h";
-      } else if (targetSec === preDefTimes[2]) {
-        return classNameStart + " progress-15h";
-      } else if (targetSec === preDefTimes[3]) {
-        return classNameStart + " progress-2h";
+      for (let i = 0; i < timeButtonList.length; i++) {
+        if (targetSec === timeButtonList[i].time) {
+          return classNameStart + " " + timeButtonList[i].className;
+        }
       }
+      /*
+      if (targetSec === timeButtonList[0]) {
+        return classNameStart + " progress-5s";
+      } else if (targetSec === timeButtonList[1]) {
+        return classNameStart + " progress-1h";
+      } else if (targetSec === timeButtonList[2]) {
+        return classNameStart + " progress-15h";
+      } else if (targetSec === timeButtonList[3]) {
+        return classNameStart + " progress-2h";
+      }*/
     } else if (!startFlag && !isReseted) {
       targetSec = 0;
       return classNameStart;
@@ -101,6 +113,7 @@ function Home() {
     }
   };
 
+  //start and reset button disable state
   const handleDisableIconColor = () => {
     if (startFlag) {
       return "#88adb2";
@@ -109,17 +122,26 @@ function Home() {
     }
   };
 
+  //make particles amount list
+  const ParticlesList = (amount = 7) => {
+    let tmp = [];
+    for (let i = 0; i < amount; i++) {
+      tmp.push(i);
+    }
+    return tmp;
+  };
+
   /* Depricated -> a modular method exists
   const handleSpinProgress = () => {
     if (startFlag) {
       //need to implement time based class
-      if (targetSec === preDefTimes[0]) {
+      if (targetSec === timeButtonList[0]) {
         return "spinner-bar start-spin-anim progress-30m";
-      } else if (targetSec === preDefTimes[1]) {
+      } else if (targetSec === timeButtonList[1]) {
         return "spinner-bar start-spin-anim progress-1h";
-      } else if (targetSec === preDefTimes[2]) {
+      } else if (targetSec === timeButtonList[2]) {
         return "spinner-bar start-spin-anim progress-15h";
-      } else if (targetSec === preDefTimes[3]) {
+      } else if (targetSec === timeButtonList[3]) {
         return "spinner-bar start-spin-anim progress-2h";
       }
     } else if (!startFlag && !isReseted) {
@@ -132,13 +154,13 @@ function Home() {
   const handleBgProgress = () => {
     if (startFlag) {
       //need to implement time based class
-      if (targetSec === preDefTimes[0]) {
+      if (targetSec === timeButtonList[0]) {
         return "body-wrapper-bg body-wrapper-bg-dark-start progress-30m";
-      } else if (targetSec === preDefTimes[1]) {
+      } else if (targetSec === timeButtonList[1]) {
         return "body-wrapper-bg body-wrapper-bg-dark-start progress-1h";
-      } else if (targetSec === preDefTimes[2]) {
+      } else if (targetSec === timeButtonList[2]) {
         return "body-wrapper-bg body-wrapper-bg-dark-start progress-15h";
-      } else if (targetSec === preDefTimes[3]) {
+      } else if (targetSec === timeButtonList[3]) {
         return "body-wrapper-bg body-wrapper-bg-dark-start progress-2h";
       }
     } else if (!startFlag && !isReseted) {
@@ -148,16 +170,16 @@ function Home() {
       return "body-wrapper-bg body-wrapper-bg-dark-end";
     }
   };
-
+  
   const handleProgressBar = () => {
     if (startFlag) {
-      if (targetSec === preDefTimes[0]) {
+      if (targetSec === timeButtonList[0]) {
         return "progress-start progress-30m";
-      } else if (targetSec === preDefTimes[1]) {
+      } else if (targetSec === timeButtonList[1]) {
         return "progress-start progress-1h";
-      } else if (targetSec === preDefTimes[2]) {
+      } else if (targetSec === timeButtonList[2]) {
         return "progress-start progress-15h";
-      } else if (targetSec === preDefTimes[3]) {
+      } else if (targetSec === timeButtonList[3]) {
         return "progress-start progress-2h";
       }
     }
@@ -172,6 +194,10 @@ function Home() {
       setStartFlag(false);
     }
   });
+
+  //---Components---
+
+  //----------------
 
   return (
     <div
@@ -189,6 +215,10 @@ function Home() {
         }
       ></div>
       <div className="particle-layer">
+        {ParticlesList(8).map((i) => {
+          return <div className="particle"></div>;
+        })}
+        {/**
         <div className="particle"></div>
         <div className="particle"></div>
         <div className="particle"></div>
@@ -196,6 +226,7 @@ function Home() {
         <div className="particle"></div>
         <div className="particle"></div>
         <div className="particle"></div>
+         */}
       </div>
       <div className="body-wrapper-fg">
         {/*<h3 className="timer-text shadow">{curSec}</h3>*/}
@@ -257,36 +288,51 @@ function Home() {
           </button>
         </div>
         <div className="time-btn-grid">
+          {timeButtonList.map((item) => {
+            return (
+              <Button
+                name={item.name}
+                time={item.time}
+                className="time-btn-circle shadow"
+                oncClickMethod={() => handleSetTargetSec(item.time)}
+                disabled={isDisabled}
+              ></Button>
+            );
+          })}
+
+          {/**
           <button
             className="time-btn-circle shadow"
             disabled={isDisabled}
-            onClick={() => handleSetTargetSec(preDefTimes[0])}
+            onClick={() => handleSetTargetSec(timeButtonList[0])}
           >
             5S
           </button>
           <button
             className="time-btn-circle shadow"
             disabled={isDisabled}
-            onClick={() => handleSetTargetSec(preDefTimes[1])}
+            onClick={() => handleSetTargetSec(timeButtonList[1])}
           >
             1H
           </button>
           <button
             className="time-btn-circle shadow"
             disabled={isDisabled}
-            onClick={() => handleSetTargetSec(preDefTimes[2])}
+            onClick={() => handleSetTargetSec(timeButtonList[2])}
           >
             1.5H
           </button>
           <button
             className="time-btn-circle shadow"
             disabled={isDisabled}
-            onClick={() => handleSetTargetSec(preDefTimes[3])}
+            onClick={() => handleSetTargetSec(timeButtonList[3])}
           >
             2H
           </button>
+           */}
         </div>
       </div>
+      <Footer></Footer>
     </div>
   );
 }

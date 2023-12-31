@@ -77,6 +77,18 @@
 }
 
 .particle:nth-child(1) {
+  left: 37%;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: white;
+  opacity: 0.75;
+  animation-delay: 0.3s;
+  animation-duration: 12s;
+}
+
+.particle:nth-child(2) {
   left: 35%;
   position: absolute;
   width: 15px;
@@ -88,7 +100,7 @@
   animation-duration: 15s;
 }
 
-.particle:nth-child(2) {
+.particle:nth-child(3) {
   left: 40%;
   width: 20px;
   height: 20px;
@@ -99,7 +111,7 @@
   animation-duration: 5s;
 }
 
-.particle:nth-child(3) {
+.particle:nth-child(4) {
   left: 45%;
   position: absolute;
   width: 10px;
@@ -111,7 +123,7 @@
   animation-duration: 10s;
 }
 
-.particle:nth-child(4) {
+.particle:nth-child(5) {
   left: 50%;
   position: absolute;
   width: 15px;
@@ -123,7 +135,7 @@
   animation-duration: 15s;
 }
 
-.particle:nth-child(5) {
+.particle:nth-child(6) {
   left: 55%;
   position: absolute;
   width: 25px;
@@ -135,7 +147,7 @@
   animation-duration: 20s;
 }
 
-.particle:nth-child(6) {
+.particle:nth-child(7) {
   left: 60%;
   position: absolute;
   width: 20px;
@@ -147,7 +159,7 @@
   animation-duration: 15s;
 }
 
-.particle:nth-child(7) {
+.particle:nth-child(8) {
   left: 65%;
   position: absolute;
   width: 10px;
@@ -240,6 +252,28 @@
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
+.timer-text-anim {
+  color: #1f2728;
+  background-color: #daebed;
+  border-radius: 50px;
+  width: 80%;
+  font-size: 50px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  animation: timerTextAnim 0.3s linear 0s forwards normal;
+}
+
+@keyframes timerTextAnim {
+  0% {
+    font-size: 50px;
+  }
+  50% {
+    font-size: 55px;
+  }
+  100% {
+    font-size: 50px;
+  }
+}
+
 .shadow {
   box-shadow: 0px 0px 30px #65cad6;
   animation: shadowAnim 4s linear 0s infinite;
@@ -305,18 +339,27 @@
 @keyframes spin {
   0% {
     border-top-color: aliceblue;
+    border-right-color: aliceblue;
+    border-bottom-color: aliceblue;
+    border-left-color: aliceblue;
   }
   25% {
     border-top-color: #65cad6;
+    border-right-color: aliceblue;
+    border-bottom-color: aliceblue;
+    border-left-color: aliceblue;
   }
   50% {
     border-top-color: #65cad6;
     border-right-color: #65cad6;
+    border-bottom-color: aliceblue;
+    border-left-color: aliceblue;
   }
   75% {
     border-top-color: #65cad6;
     border-right-color: #65cad6;
     border-bottom-color: #65cad6;
+    border-left-color: aliceblue;
   }
   100% {
     border-top-color: #65cad6;
@@ -326,8 +369,20 @@
   }
 }
 
-.progress-30m {
+.progress-5s {
   animation-duration: 5s;
+}
+.progress-15s {
+  animation-duration: 15s;
+}
+.progress-30s {
+  animation-duration: 30s;
+}
+.progress-1m {
+  animation-duration: 60s;
+}
+.progress-30m {
+  animation-duration: 1800s;
 }
 .progress-1h {
   animation-duration: 3600s;

@@ -12,7 +12,7 @@ function Footer() {
       }}
     >
       <p>Contact Email: zarifdesanta@gmail.com</p>
-      <p>&copy;2024 focustime.netlify.app</p>
+      <p>&copy;2024 focus500.netlify.app</p>
     </div>
   );
 }

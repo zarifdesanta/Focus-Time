@@ -251,6 +251,12 @@
   width: 80%;
   font-size: 50px;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  transition: font-size 0.2s, background-color 0.2s linear 0s;
+}
+
+.timer-text:hover {
+  background-color: #a6d5db;
+  font-size: 53px;
 }
 
 .timer-text-anim {

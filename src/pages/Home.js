@@ -4,6 +4,8 @@ import { MdPlayArrow, MdStop, MdReplay } from "react-icons/md";
 import { preDefTimes as timeButtonList } from "../helper/ButonList";
 import Button from "../components/Button";
 import Footer from "../components/Footer";
+import Bell from "../assets/bell.wav";
+import Tap from "../assets/tap.wav";
 
 function Home() {
   var [curSec, setCurSec] = useState(0);
@@ -21,6 +23,7 @@ function Home() {
   const startTimer = () => {
     setCurSec(targetSec);
     if (targetSec > 0) {
+      PlaySound(Tap);
       setStartFlag(true);
       setIsDisabled(true);
       setIsReseted(false);
@@ -59,6 +62,11 @@ function Home() {
   const updateTimer = () => {
     if (startFlag) {
       curSec -= 1;
+
+      if (curSec <= 0) {
+        PlaySound(Bell);
+      }
+
       setCurSec(curSec);
 
       calculateTime(curSec);
@@ -72,6 +80,7 @@ function Home() {
   };
 
   const resetTimer = () => {
+    PlaySound(Tap);
     setCurSec(0);
     setTragetSec(0);
     setStartFlag(false);
@@ -84,6 +93,7 @@ function Home() {
 
   const stopTimer = () => {
     setStartFlag(false);
+    PlaySound(Bell);
   };
 
   //handle progress ui (classNames)
@@ -184,6 +194,10 @@ function Home() {
       }
     }
   };*/
+
+  const PlaySound = (sound) => {
+    new Audio(sound).play();
+  };
 
   useEffect(() => {
     if (curSec > 0) {
